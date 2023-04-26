@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TradingView Lightweight Chart</title>
-  <script src="https://Shiverz101.github.io/wix-charts/lightweight-charts.standalone.production.js"></script>
+  <script src="https://unpkg.com/lightweight-charts@latest/dist/lightweight-charts.standalone.production.js"></script>
 </head>
 <body>
   <div id="chart-container" style="width: 800px; height: 600px;"></div>
@@ -36,13 +36,8 @@
     });
 
     const lineSeries = chart.addLineSeries();
-    lineSeries.setData([
-      { time: '2019-04-11', value: 80.01 },
-      { time: '2019-04-12', value: 96.63 },
-      // ... more data points
-    ]);
-  </script>
-  <script>
+    lineSeries.setData([]);
+
     window.addEventListener('message', function(event) {
       if (event.data.type === 'updateChartData') {
         lineSeries.setData(event.data.chartData);
@@ -51,5 +46,3 @@
   </script>
 </body>
 </html>
-
-
