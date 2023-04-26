@@ -42,6 +42,13 @@
       // ... more data points
     ]);
   </script>
+  <script>
+    window.addEventListener('message', function(event) {
+      if (event.data.type === 'updateChartData') {
+        lineSeries.setData(event.data.chartData);
+      }
+    });
+  </script>
 </body>
 </html>
 
