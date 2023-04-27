@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TradingView Lightweight Chart</title>
-  <script src="https://unpkg.com/lightweight-charts@latest/dist/lightweight-charts.standalone.production.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradingView Chart</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #chart {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-  <div id="chart-container" style="width: 800px; height: 600px;"></div>
-  <script>
-    const chart = window.LightweightCharts.createChart(document.getElementById('chart-container'), {
-      width: document.documentElement.clientWidth,
-      height: document.documentElement.clientHeight,
-      layout: {
-        backgroundColor: '#000000',
-        textColor: 'rgba(255, 255, 255, 0.9)',
-      },
-      grid: {
-        vertLines: {
-          color: 'rgba(255, 255, 255, 0.1)',
-        },
-        horzLines: {
-          color: 'rgba(255, 255, 255, 0.1)',
-        },
-      },
-      crosshair: {
-        mode: LightweightCharts.CrosshairMode.Normal,
-      },
-      rightPriceScale: {
-        borderColor: 'rgba(255, 255, 255, 0.1)',
-      },
-      timeScale: {
-        borderColor: 'rgba(255, 255, 255, 0.1)',
-      },
-    });
+    <div id="chart"></div>
+    <script src="https://shiverz101.github.io/wix-charts/lightweight-charts.standalone.production.js"></script>
+    <script>
+        const chart = LightweightCharts.createChart(document.getElementById('chart'), {
+            width: document.documentElement.clientWidth,
+            height: document.documentElement.clientHeight,
+            layout: {
+                backgroundColor: '#000',
+                textColor: 'rgba(255, 255, 255, 0.9)',
+            },
+            grid: {
+                vertLines: {
+                    color: 'rgba(255, 255, 255, 0.1)',
+                },
+                horzLines: {
+                    color: 'rgba(255, 255, 255, 0.1)',
+                },
+            },
+            rightPriceScale: {
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+            },
+            timeScale: {
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+            },
+        });
 
-    const lineSeries = chart.addLineSeries();
-    lineSeries.setData([]);
+        const lineSeries = chart.addLineSeries({
+            color: 'rgba(255, 255, 255, 1)',
+            lineWidth: 2,
+        });
 
-    window.addEventListener('message', function(event) {
-      if (event.data.type === 'updateChartData') {
-        lineSeries.setData(event.data.chartData);
-      }
-    });
-  </script>
+        lineSeries.setData([
+            // Your chart data here
+        ]);
+    </script>
 </body>
 </html>
